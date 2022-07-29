@@ -1,19 +1,31 @@
-var mysql = require('mysql');
+var mysql = require('mysql'); 
 
-var connMySQL = function(){
-	console.log('Conexão com DB foi estabelecida');
-	return mysql.createConnection({
-	host: 'localhost',
-	user:'root',
-	password:'password',
-	database: 'portal_noticias'
-	});
+const port = process.env.PORT || 3000;
+
+if (port == 3000){
+	var connMySQL = function(){
+		//console.log('Conexão com o BD foi estabelecida');
+		return mysql.createConnection({ 
+			host: 'localhost',
+			user:'root',
+			password:'password',
+			database: 'portal_noticias'
+		});
+	}
+}else{
+	var connMySQL = function(){
+		//console.log('Conexão com o BD Heroku');
+		return mysql.createConnection({ 
+			host: process.env.host,
+			user: process.env.user,
+			password: process.env.password,
+			database: process.env.database
+		});
+	}
 }
 
 module.exports = function(){
-	
-	console.log('O autoload carregou o módulo de conexão com o DB');
+	console.log('o autoload carregou o dbConnection')
 	return connMySQL;
-
 }
 
