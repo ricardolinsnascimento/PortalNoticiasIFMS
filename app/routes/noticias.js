@@ -1,27 +1,27 @@
 
 module.exports = function(app){
 
+	const noticiasController = require('../controllers/noticias');
+
 	app.get('/noticias',function(req,res){
-		app.app.controllers.noticias.noticias(app, req, res);
+		noticiasController.noticias(app, req, res);
 	});
 
-
-
 	app.get('/noticia',function(req,res){
-		app.app.controllers.noticias.noticia(app, req, res);
+		noticiasController.noticia(app, req, res);
 	});
 
 	app.post('/busca', function(req,res){
-		app.app.controllers.noticias.busca(app, req, res);
+		noticiasController.busca(app, req, res);
 
 	});
 
 	app.get('/excluir', function(req,res){
-		app.app.controllers.noticias.excluir(app, req, res);
+		noticiasController.excluir(app, req, res);
 	});
 
 	  app.get('/editar', function(req,res){
-		app.app.controllers.noticias.editar(app, req, res);
+		noticiasController.editar(app, req, res);
 	});
 
 
