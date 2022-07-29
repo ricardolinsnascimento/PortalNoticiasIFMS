@@ -1,3 +1,5 @@
+const NoticiasDAO = require('../models/NoticiasDAO');
+
 module.exports.formulario_inclusao_noticia = function(app, req, res){
 			res.render('admin/form_add_noticia', {validacao:{}, noticia:{}});
 }
@@ -19,7 +21,7 @@ module.exports.noticias_salvar = function(app, req, res){
 		}
 
 		var connection = app.config.dbConnection();
-		var noticiasModel= new app.app.models.NoticiasDAO(connection);
+		var noticiasModel= new NoticiasDAO(connection);
 
 		noticiasModel.salvarNoticia(noticia, function(error, result){
 			res.redirect('/noticias');
@@ -42,7 +44,7 @@ module.exports.noticias_atualizar = function(app, req, res){
 			return;
 		}
 		var connection = app.config.dbConnection();		
-		var noticiasModel = new app.app.models.NoticiasDAO(connection);
+		var noticiasModel= new NoticiasDAO(connection);
 		
 		noticiasModel.atualizarNoticia(noticia,
 			noticiasModel.mostraNoticia(id_noticia, function(error, result){

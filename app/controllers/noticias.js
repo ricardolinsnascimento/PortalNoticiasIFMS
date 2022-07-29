@@ -1,8 +1,9 @@
+const NoticiasDAO = require('../models/NoticiasDAO');
 
 module.exports.noticias = function(app, req, res){
 
 	var connection = app.config.dbConnection();
-	var noticiasModel = new app.app.models.NoticiasDAO(connection);
+	var noticiasModel = new NoticiasDAO(connection);
 	
 	noticiasModel.getNoticias(function(error, result){
 		res.render('noticias/noticias',{noticias:result});
@@ -13,7 +14,7 @@ module.exports.noticias = function(app, req, res){
 module.exports.noticia = function(app, req, res){
 	  
 	   var connection = app.config.dbConnection();
-	   var noticiasModel = new app.app.models.NoticiasDAO(connection);
+	   var noticiasModel = new NoticiasDAO(connection);
 
 	   if (req.query.id_noticia){
 	   		   var id_noticia = req.query; //id_noticia recebe o parâmetro enviado pelas views,
@@ -33,7 +34,7 @@ module.exports.noticia = function(app, req, res){
 module.exports.busca = function(app, req, res){
 	var pesquisa = req.body.pesquisa;
 	var connection = app.config.dbConnection();
-	var noticiasModel = new app.app.models.NoticiasDAO(connection);
+	var noticiasModel = new NoticiasDAO(connection);
 
 	noticiasModel.buscaNoticias(pesquisa, function(error, result){
 		res.render('noticias/noticias',{ noticias : result });
@@ -44,7 +45,7 @@ module.exports.busca = function(app, req, res){
 module.exports.excluir = function(app,req,res){
 	var pesquisa = req.body.pesquisa;
 	var connection = app.config.dbConnection();
-	var noticiasModel = new app.app.models.NoticiasDAO(connection);
+	var noticiasModel = new NoticiasDAO(connection);
 
 	if (req.query.id_noticia){
 		var id_noticia = req.query;
@@ -61,7 +62,7 @@ module.exports.excluir = function(app,req,res){
 module.exports.editar = function(app,req,res){
         var pesquisa = req.body.pesquisa; 
         var connection = app.config.dbConnection(); 
-        var noticiasModel = new app.app.models.NoticiasDAO(connection); 
+        var noticiasModel = new NoticiasDAO(connection);
 
 
         if (req.query.id_noticia){
