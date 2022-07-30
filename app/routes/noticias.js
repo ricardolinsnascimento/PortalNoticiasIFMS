@@ -7,6 +7,10 @@ module.exports = function(app){
 		noticiasController.noticias(app, req, res);
 	});
 
+	app.get('/apinoticias',function(req,res){
+		noticiasController.apinoticias(app, req, res);
+	});
+
 	app.get('/noticia',function(req,res){
 		noticiasController.noticia(app, req, res);
 	});
