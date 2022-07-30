@@ -11,6 +11,18 @@ module.exports.noticias = function(app, req, res){
 		
 }
 
+module.exports.apinoticias = function(app, req, res){
+
+	var connection = app.config.dbConnection();
+	var noticiasModel = new NoticiasDAO(connection);
+	
+	noticiasModel.getNoticias(function(error, result){
+		res.send(result);
+	});
+		
+}
+
+
 module.exports.noticia = function(app, req, res){
 	  
 	   var connection = app.config.dbConnection();
