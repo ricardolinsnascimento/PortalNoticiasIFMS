@@ -6,6 +6,7 @@ module.exports.noticias = function(app, req, res){
 	var noticiasModel = new NoticiasDAO(connection);
 	
 	noticiasModel.getNoticias(function(error, result){
+		connection.end();  
 		res.render('noticias/noticias',{noticias:result});
 	});
 		
@@ -17,6 +18,7 @@ module.exports.apinoticias = function(app, req, res){
 	var noticiasModel = new NoticiasDAO(connection);
 	
 	noticiasModel.getNoticias(function(error, result){
+		connection.end();  
 		res.send(result);
 	});
 		
@@ -38,6 +40,7 @@ module.exports.noticia = function(app, req, res){
 
 
 	   noticiasModel.getNoticia(id_noticia,function(error, result){
+	   	   connection.end();  
 	       res.render('noticias/noticia',{noticia:result});
 		});
 
@@ -49,6 +52,7 @@ module.exports.busca = function(app, req, res){
 	var noticiasModel = new NoticiasDAO(connection);
 
 	noticiasModel.buscaNoticias(pesquisa, function(error, result){
+		connection.end();  
 		res.render('noticias/noticias',{ noticias : result });
 		
 	});
@@ -67,6 +71,7 @@ module.exports.excluir = function(app,req,res){
 		return;
 	}
 	noticiasModel.excluiNoticia(id_noticia, function (error, result){
+		connection.end();  
 		res.redirect('/noticias');
 	});
 }
@@ -85,6 +90,7 @@ module.exports.editar = function(app,req,res){
         }
 
         noticiasModel.getNoticia(id_noticia, function(error, result){
+        	  connection.end();  
                res.render("admin/form_update_noticia", {validacao:{}, noticia : result});
         });
         

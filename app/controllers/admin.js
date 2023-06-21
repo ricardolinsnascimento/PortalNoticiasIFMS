@@ -24,6 +24,7 @@ module.exports.noticias_salvar = function(app, req, res){
 		var noticiasModel= new NoticiasDAO(connection);
 
 		noticiasModel.salvarNoticia(noticia, function(error, result){
+			connection.end();  
 			res.redirect('/noticias');
 		});
 }
@@ -48,6 +49,7 @@ module.exports.noticias_atualizar = function(app, req, res){
 		
 		noticiasModel.atualizarNoticia(noticia,
 			noticiasModel.mostraNoticia(id_noticia, function(error, result){
+			connection.end();  
 			res.redirect('/noticia?id_noticia=' + id_noticia);					
 		}));
 }

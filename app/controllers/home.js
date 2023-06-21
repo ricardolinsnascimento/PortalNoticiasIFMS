@@ -6,7 +6,8 @@ module.exports.index = function(app, req, res){
 	var noticiasModel = new NoticiasDAO(connection);
 	//var noticiasModel = new app.app.models.NoticiasDAO(connection);
 
-	noticiasModel.get5UltimasNoticias(function(error, result){		
+	noticiasModel.get5UltimasNoticias(function(error, result){	
+	 	connection.end();  	
 		res.render("home/index", {noticias: result});
 	});
 	
