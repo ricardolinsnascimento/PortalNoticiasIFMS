@@ -24,7 +24,7 @@ module.exports = function(app){
 		noticiasController.excluir(app, req, res);
 	});
 
-	  app.get('/editar', function(req,res){
+	app.get('/editar', function(req,res){
 		noticiasController.editar(app, req, res);
 	});
 

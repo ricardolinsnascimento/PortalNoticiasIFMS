@@ -19,7 +19,7 @@ module.exports.apinoticias = function(app, req, res){
 	
 	noticiasModel.getNoticias(function(error, result){
 		connection.end();  
-		res.send(result);
+		res.json(result);
 	});
 		
 }

@@ -2,6 +2,8 @@ var express = require ('express');
 var consign = require('consign');
 var bodyParser = require('body-parser');
 var expressValidator = require('express-validator'); //importação do módulo expressValidator
+// Importar cors, para api json
+var cors = require('cors');
 
 var app = express();
 app.set('view engine', 'ejs');
@@ -16,6 +18,9 @@ app.use(bodyParser.urlencoded({extended:true}));
 
 app.use(expressValidator());
 //aqui colocamos em execução o expressValidator;
+
+// incorpora cors no express
+app.use(cors());
 
 consign()
 
