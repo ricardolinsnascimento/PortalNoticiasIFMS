@@ -11,6 +11,10 @@ module.exports = function(app){
 		noticiasController.apinoticias(app, req, res);
 	});
 
+	app.get('/apinoticia',function(req,res){
+		noticiasController.apinoticia(app, req, res);
+	});
+
 	app.get('/noticia',function(req,res){
 		noticiasController.noticia(app, req, res);
 	});
